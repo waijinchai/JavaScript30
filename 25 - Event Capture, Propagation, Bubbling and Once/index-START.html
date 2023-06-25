@@ -41,8 +41,20 @@
   }
 </style>
 
-<button></button>
+<button>Click Me!</button>
 <script>
+  const divs = document.querySelectorAll("div");
+  const button = document.querySelector("button")
+
+  function logText(e) {
+    console.log(this.classList.value);
+    e.stopPropagation();  // stops the events from bubbling
+  }
+
+  divs.forEach((div) => {div.addEventListener("click", logText, {capture: false})});  // capture is false by default
+  button.addEventListener("click", () => {
+    console.log("Clicked!!!");
+  }, {once: true});  // once is used to remove the event listener after the event is fired
 
 </script>
 </body>
